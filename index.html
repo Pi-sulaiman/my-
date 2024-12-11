@@ -344,7 +344,8 @@
           <span class="scrollIndication scrollIndication--2">SCROLL DOWN</span>
           <div class="heySection">
             <span>I'M Pi Sulaiman.</span>
-            <span>A 23 YO Indian</span>
+            <span id="ageDisplay">Loading...</span>
+<!--             <span>A 23 YO Indian</span> -->
             <span>Ui/Ux & Web Developer</span>
             <span class="textyear">5+ Year Experience</span>
           </div>
@@ -904,6 +905,37 @@ function checkbutton(){
 window.addEventListener('load', function () {
 
 })
+
+
+    const birthDate = new Date('2000-07-27'); // Replace with your actual birth date
+
+function calculateAge(birthDate) {
+    const now = new Date();
+
+    // Calculate the total time difference in milliseconds
+    const timeDiff = now - birthDate;
+
+    // Convert the time difference to years (365.25 days to account for leap years)
+    const ageInYears = timeDiff / (1000 * 60 * 60 * 24 * 365.25);
+
+    return ageInYears;
+}
+
+function updateAge() {
+    const age = calculateAge(birthDate).toFixed(7); // Limit to 7 decimal places
+    const spanElement = document.getElementById('ageDisplay');
+    
+    if (spanElement) {
+        spanElement.innerHTML = `Still kicking at ${age} YO and counting!`; // A bit of humor
+    }
+}
+
+// Update the age every second
+setInterval(updateAge, 1000);
+
+// Initial call to display age immediately
+updateAge();
+
 
   </script>
   
