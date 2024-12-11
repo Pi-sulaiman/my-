@@ -906,35 +906,34 @@ window.addEventListener('load', function () {
 
 })
 
+  // Set your birth date in UTC
+    const birthDate = new Date('2000-07-27T00:00:00Z');  // Replace with your actual birth date and time
 
-    const birthDate = new Date('2000-07-27'); // Replace with your actual birth date
+    // Calculate milliseconds per year (accounting for leap years)
+    const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25;
 
-function calculateAge(birthDate) {
-    const now = new Date();
+    function updateAge() {
+        // Get the current time in milliseconds
+        const currentTime = Date.now();
 
-    // Calculate the total time difference in milliseconds
-    const timeDiff = now - birthDate;
+        // Calculate the difference in milliseconds since birth
+        const diff = currentTime - birthDate.getTime();
 
-    // Convert the time difference to years (365.25 days to account for leap years)
-    const ageInYears = timeDiff / (1000 * 60 * 60 * 24 * 365.25);
+        // Calculate the current age in years
+        const currentAge = diff / millisecondsPerYear;
 
-    return ageInYears;
-}
+        // Format the age to 10 decimal places
+        const formattedAge = currentAge.toFixed(10);
 
-function updateAge() {
-    const age = calculateAge(birthDate).toFixed(7); // Limit to 7 decimal places
-    const spanElement = document.getElementById('ageDisplay');
-    
-    if (spanElement) {
-        spanElement.innerHTML = `Still kicking at ${age} YO and counting!`; // A bit of humor
+        // Update the age display
+        document.getElementById('ageDisplay').textContent = `A ${formattedAge} YO Indian`;
     }
-}
 
-// Update the age every second
-setInterval(updateAge, 1000);
+    // Update the age every 30 milliseconds
+    setInterval(updateAge, 30);
 
-// Initial call to display age immediately
-updateAge();
+    // Initialize the age display immediately
+    updateAge();
 
 
   </script>
